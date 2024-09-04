@@ -3,32 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sloooooo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <title>SLOOOP</title>
     <style>
         body {
-            font-family: 'Zen Dots', cursive;
-            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Evite le défilement horizontal */
+            background-color: #f0f0f0;
         }
-        .container {
-            text-align: center;
-            font-size: 5rem;
-            line-height: 1.2;
-            white-space: nowrap; /* Evite le retour à la ligne */
+        .logo {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        Sloooooo<span id="o-container"></span><p> </p>
-    </div>
-    <script>
-        // Générer les 1000 "o"
-        const container = document.getElementById('o-container');
-        container.innerHTML = 'o'.repeat(17);
-    </script>
+    <img src="slooop.png" alt="Logo" class="logo">
 </body>
 </html>
