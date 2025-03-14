@@ -3,23 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLOOOP</title>
+    <title>Carte d'Identité Grasslandaise</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
         }
-        .logo {
-            max-width: 100%;
-            height: auto;
+        .container {
+            width: 350px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .id-card {
+            width: 320px;
+            height: 200px;
+            background: linear-gradient(to right, #4a90e2, #2575fc);
+            color: white;
+            text-align: left;
+            padding: 10px;
+            border-radius: 10px;
+            position: relative;
+            margin-top: 20px;
+        }
+        .id-card h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .id-card img {
+            width: 70px;
+            height: 70px;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+        .download-btn {
+            background: #ff9800;
+            color: white;
+            cursor: pointer;
+            border: none;
         }
     </style>
 </head>
 <body>
-    <img src="slooop.png" alt="Logo" class="logo">
+
+    <div class="container">
+        <h1>Créer une Carte d'Identité Grasslandaise</h1>
+        <input type="text" id="nom" placeholder="Nom">
+        <input type="text" id="prenom" placeholder="Prénom">
+        <input type="date" id="date_naissance">
+        <input type="file" id="photo" accept="image/*">
+        <button onclick="genererCarte()">Générer la Carte</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function genererCarte() {
+            const nom = document.getElementById("nom").value.toUpperCase();
+            const prenom = document.getElementById("prenom").value;
+            const dateNaissance = document.getElementById("date_naissance").value;
+            const photoInput = document.getElementById("photo");
+            const output = document.getElementById("output");
+
+            if (!nom || !prenom || !dateNaissance || !photoInput.files.length) {
+                alert("Veuillez remplir tous les champs !");
+                return;
+            }
+
+            const photoURL = URL.createObjectURL(photoInput.files[0]);
+
+            output.innerHTML = `
+                <div class="id-card" id="idCard">
+                    <h2>République de Grassland</h2>
+                    <p><strong>Nom :</strong> ${nom}</p>
+                    <p><strong>Prénom :</strong> ${prenom}</p>
+                    <p><strong>Né(e) le :</strong> ${dateNaissance}</p>
+                    <img src="${photoURL}" alt="Photo">
+                </div>
+                <button class="download-btn" onclick="telechargerCarte()">Télécharger</button>
+            `;
+        }
+
+        function telechargerCarte() {
+            html2canvas(document.getElementById("idCard")).then(canvas => {
+                let link = document.createElement("a");
+                link.download = "Carte_Grasslandaise.png";
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </body>
 </html>
