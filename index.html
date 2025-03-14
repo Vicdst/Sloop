@@ -3,56 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carte d'Identité Grasslandaise</title>
+    <title>Carte d'Identité Grasslandaise 🌸</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            background-color: #f4f4f4;
+            background-color: #fceff1;
+            color: #333;
         }
         .container {
-            width: 350px;
+            max-width: 400px;
             margin: auto;
             background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 3px solid #ff66b2;
+        }
+        h1 {
+            color: #d63384;
         }
         input, button {
             display: block;
             width: 100%;
-            margin: 5px 0;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            margin: 8px 0;
+            padding: 10px;
+            border: 2px solid #ff66b2;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            background: #ff66b2;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
         }
         .id-card {
-            width: 320px;
-            height: 200px;
-            background: linear-gradient(to right, #4a90e2, #2575fc);
+            width: 350px;
+            height: 220px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
             color: white;
             text-align: left;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 12px;
             position: relative;
             margin-top: 20px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border: 3px solid white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .id-card h2 {
             margin: 0;
             font-size: 18px;
+            text-align: center;
+        }
+        .id-card p {
+            margin: 5px 0;
+        }
+        .id-card .flag {
+            font-size: 20px;
+            text-align: center;
         }
         .id-card img {
-            width: 70px;
-            height: 70px;
-            border-radius: 5px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
             object-fit: cover;
-            border: 2px solid white;
+            border: 3px solid white;
+            position: absolute;
+            top: 15px;
+            right: 15px;
         }
         .download-btn {
-            background: #ff9800;
+            background: #ff4081;
             color: white;
             cursor: pointer;
             border: none;
@@ -62,12 +88,12 @@
 <body>
 
     <div class="container">
-        <h1>Créer une Carte d'Identité Grasslandaise</h1>
-        <input type="text" id="nom" placeholder="Nom">
-        <input type="text" id="prenom" placeholder="Prénom">
+        <h1>🌸 Carte d'Identité Grasslandaise 🌿</h1>
+        <input type="text" id="nom" placeholder="Nom (ex: Dupont)">
+        <input type="text" id="prenom" placeholder="Prénom (ex: Alice)">
         <input type="date" id="date_naissance">
         <input type="file" id="photo" accept="image/*">
-        <button onclick="genererCarte()">Générer la Carte</button>
+        <button onclick="genererCarte()">🌿 Générer la Carte</button>
 
         <div id="output"></div>
     </div>
@@ -81,7 +107,7 @@
             const output = document.getElementById("output");
 
             if (!nom || !prenom || !dateNaissance || !photoInput.files.length) {
-                alert("Veuillez remplir tous les champs !");
+                alert("🌸 Veuillez remplir tous les champs !");
                 return;
             }
 
@@ -89,13 +115,14 @@
 
             output.innerHTML = `
                 <div class="id-card" id="idCard">
-                    <h2>République de Grassland</h2>
+                    <h2>🌿 République de Grassland 🌸</h2>
+                    <p class="flag">🌷🌿💖</p>
                     <p><strong>Nom :</strong> ${nom}</p>
                     <p><strong>Prénom :</strong> ${prenom}</p>
                     <p><strong>Né(e) le :</strong> ${dateNaissance}</p>
                     <img src="${photoURL}" alt="Photo">
                 </div>
-                <button class="download-btn" onclick="telechargerCarte()">Télécharger</button>
+                <button class="download-btn" onclick="telechargerCarte()">📥 Télécharger</button>
             `;
         }
 
